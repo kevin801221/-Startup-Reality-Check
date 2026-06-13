@@ -1,218 +1,235 @@
 <div align="center">
 
-# 🧭 Canvas Coach
+# 創業真心話｜Startup Reality Check
 
-### Your AI co-founder that refuses to let you bullshit yourself.
+### 不會只說好聽話的 AI 創業教練
 
-**Stop writing business plans nobody challenges.** Canvas Coach walks you through the **MIT Disciplined Entrepreneurship** 10-step canvas with a three-stage AI partner that drafts with you, coaches you like Socrates, and then **tears your assumptions apart like a skeptical investor** — until your business model actually holds up.
+把一句模糊的商業點子，拆成 **MIT 紀律創業畫布** 的 10 個關鍵假設；再用 AI 起草、追問、挑戰，逼它變成一份可驗證、可討論、可匯出的商業模型。
 
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Gemini](https://img.shields.io/badge/Google-Gemini%202.5-8E75FF?logo=google&logoColor=white)](https://ai.google.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com/)
-[![Tests](https://img.shields.io/badge/tests-passing-success)](#-testing)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](#-license)
-[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](#-contributing)
+[![Tests](https://img.shields.io/badge/tests-Vitest-success)](#測試)
 
-[**Quickstart**](#-quickstart) · [**How it works**](#-how-it-works) · [**The 10 blocks**](#-the-10-blocks) · [**Roadmap**](#%EF%B8%8F-roadmap) · [繁體中文](#-繁體中文)
+[快速開始](#快速開始) · [為什麼做](#為什麼做) · [怎麼運作](#怎麼運作) · [10 格創業畫布](#10-格創業畫布) · [Repo 上架文案](#repo-上架文案)
 
 </div>
 
 ---
 
-> **TL;DR** — Most founders think their idea is great because nobody has ever pushed back on it. Canvas Coach is the pushback. It's a focused web app: pick a block of your business model, talk to an AI that knows the methodology cold, and let it drag you from *"my customer is all SMBs"* to *"5–20 person B2B SaaS legal teams in Taipei already paying for a worse tool."*
+> **一句話**：大多數創業者不是沒有想法，而是太少被追問。創業真心話會像共同創辦人一樣陪你起草，像教練一樣逼你講清楚，最後像挑剔投資人一樣攻擊你的假設，讓商業模型在真正花錢前先經過壓力測試。
 
-<!-- 👉 Drop a GIF or screenshot here for instant credibility. Suggested: a 10-second screen recording of the devil's-advocate stage roasting a vague answer.
-![Canvas Coach demo](docs/demo.gif)
+<!--
+建議上傳 repo 前放一張 GIF 或截圖：
+- 10 秒 demo：輸入一句商業點子 → 一鍵生成 10 格草稿 → 切到「魔鬼代言人」被挑戰。
+![創業真心話 demo](docs/demo.gif)
 -->
 
-## ✨ Why Canvas Coach
+## 為什麼做
 
-Three things kill early ideas, and generic chatbots make all three worse:
+早期創業最常死在三件事：
 
-- **You think too broadly.** "Founders" isn't a market. Canvas Coach forces a beachhead.
-- **You think too shallowly.** A Socratic coach keeps asking *"how do you know?"* instead of handing you a confident, wrong answer.
-- **Nobody challenges you.** A built-in devil's advocate attacks your assumptions *before* you burn cash discovering them.
+- **市場講太大**：目標客戶寫成「所有中小企業」或「所有創辦人」，聽起來很大，但無法驗證。
+- **答案講太淺**：只知道產品想做什麼，卻說不清楚通路、單位經濟、銷售流程、擴張順序。
+- **沒人潑冷水**：自己的假設一路沒被挑戰，最後才用時間和現金流買教訓。
 
-Unlike a blank ChatGPT prompt, **every one of the 10 blocks ships with its own coaching brain** — definition, good/bad examples, a Socratic question bank, devil's-advocate attack angles, and the exact evidence you'd need to back it up. The AI isn't improvising; it's running a methodology.
+創業真心話把 MIT Disciplined Entrepreneurship 的 10 格畫布做成可互動 Web App。每一格都有自己的方法論知識：定義、好範例、壞範例、追問題庫、攻擊角度和需要的證據。AI 不是開一個空白聊天框亂聊，而是在固定框架裡幫你把點子打磨到更具體。
 
-## 🧠 How it works
+## 怎麼運作
 
-Every block is worked in three switchable stages — one tab, three personalities:
+每一格都有三種 AI 模式，可以依照你現在的狀態切換。
 
-| Stage | Persona | What it does |
-|-------|---------|--------------|
-| 📝 **Draft** | The fast first-drafter | Turns your one-liner into a concrete, *falsifiable* first attempt. |
-| 🎓 **Coach** | A Socratic mentor | Asks 1–2 sharp follow-ups at a time. Never answers for you — makes *you* go deeper. |
-| 😈 **Devil** | A skeptical seed investor | Attacks your assumptions, demands numbers, and exposes the blind spots you're avoiding. |
+| 模式 | 角色 | 它會做什麼 |
+|------|------|------------|
+| **起草** | 快速共同創辦人 | 根據你的一句話商業總述，產出具體、可被驗證的初稿。 |
+| **教練** | 蘇格拉底式引導者 | 一次只問 1 到 2 個關鍵問題，不替你回答，逼你把答案講深。 |
+| **魔鬼代言人** | 挑剔早期投資人 | 攻擊假設、要求數字與證據，指出你刻意迴避的盲點。 |
 
-Then comes the part that makes it real: hit **"Synthesize from conversation"** and the model reads your *entire* discussion for that block and rewrites it into a sharpened, evidence-backed answer — *not* a copy of the chat, an actual upgraded answer. Review, tweak, save. The block's status light goes ○ → ◐ → ● → ★ as it matures.
+討論完後，按下 **用對話整理**，AI 會讀完整段對話，重新整理成該格的正式內容。這不是單純複製聊天紀錄，而是把你補充過的脈絡、被挑戰後的修正和可驗證假設整理成一版更成熟的答案。
 
+```text
+一句話商業點子
+  -> 一鍵起草 10 格
+  -> 逐格進入「教練」追問
+  -> 切到「魔鬼代言人」壓力測試
+  -> 用對話整理成正式內容
+  -> 匯出 Markdown
 ```
-   one-liner ──▶ 📝 Draft ──▶ 🎓 Coach (go deeper) ──▶ 😈 Devil (get challenged)
-                                        │
-                                        ▼
-                          ✨ Synthesize ──▶ polished, defensible block
-```
 
-⚡ **One-click "Draft all"**: give it a single sentence about your business and watch all 10 blocks fill with first drafts in one shot. Then deepen the ones that matter.
+## 核心功能
 
-## 🗺️ The 10 blocks
+- **一鍵起草**：輸入一句商業總述，直接產出 10 格創業畫布初稿。
+- **逐格 AI 對話**：每格都能在起草、教練、魔鬼代言人三種模式間切換。
+- **對話整理成內容**：把整段討論濃縮成可保存、可分享的正式答案。
+- **狀態燈**：從空白、草稿、已深化到已挑戰，快速看出哪些格子還很脆弱。
+- **多畫布管理**：同時保存多個事業點子，適合比較不同方向。
+- **Markdown 匯出**：把畫布輸出成可貼到 Notion、Google Docs 或投影片草稿的文字文件。
+- **帳號與資料隔離**：Supabase Auth + Postgres Row-Level Security，每位使用者只能存取自己的畫布。
 
-Based on Bill Aulet's *Disciplined Entrepreneurship* (MIT). Each block carries its own built-in coaching knowledge.
+## 10 格創業畫布
 
-| # | Block | Focus |
-|---|-------|-------|
-| 1 | Purpose | Vision & mission — your north star |
-| 2 | Beachhead | Your *one* winnable starting market |
-| 3 | Value | Quantified value proposition + use case |
-| 4 | Edge | Defensible core that compounds over time |
-| 5 | Channel | The real path from "never heard of you" to "using you" |
-| 6 | Economics | Unit economics & pricing |
-| 7 | Sales | Decision-making unit & sales cycle |
-| 8 | Sustain | LTV ÷ CAC & payback |
-| 9 | Build | MVP & the riskiest assumption to test first |
-| 10 | Scale | Disciplined expansion to adjacent markets |
+這套畫布參考 Bill Aulet 的 **Disciplined Entrepreneurship** 思路，先幫你聚焦可以驗證的商業假設。
 
-## 🚀 Quickstart
+| # | 格子 | 要回答的問題 |
+|---|------|--------------|
+| 1 | 存在理由 | 你為什麼要做這件事？願景與使命是什麼？ |
+| 2 | 灘頭堡市場 | 你最早要服務，而且最有機會贏的那一小群人是誰？ |
+| 3 | 價值主張 | 你能替客戶創造什麼具體、可量化的價值？ |
+| 4 | 競爭優勢 | 為什麼是你能贏？什麼能力會隨時間累積？ |
+| 5 | 通路 | 客戶如何從不知道你，到開始使用你的產品？ |
+| 6 | 單位經濟 | 你如何收費？每一筆生意是否真的能賺錢？ |
+| 7 | 銷售流程 | 誰決策、誰使用、誰付錢？成交週期多長？ |
+| 8 | 維持經濟 | LTV、CAC、回本期是否能支撐長期成長？ |
+| 9 | MVP 與產品路線 | 第一個該驗證的最大風險是什麼？要先做什麼？ |
+| 10 | 規模化 | 灘頭堡打下後，下一個相鄰市場是誰？ |
+
+## 快速開始
 
 ```bash
-# 1. Clone & install (pnpm)
-git clone https://github.com/kevin801221/canvas-coach.git
-cd canvas-coach
+# 1. Clone & install
+git clone https://github.com/<your-account>/startup-reality-check.git
+cd startup-reality-check
 pnpm install
 
-# 2. Configure environment
+# 2. 建立環境變數
 cp .env.local.example .env.local
-#   then fill in:
-#   - GOOGLE_GENERATIVE_AI_API_KEY   (https://aistudio.google.com/apikey)
-#   - NEXT_PUBLIC_SUPABASE_URL / NEXT_PUBLIC_SUPABASE_ANON_KEY
-#   - SUPABASE_SERVICE_ROLE_KEY
-#   - DATABASE_URL                   (Supabase → Connect → Shared Pooler)
 
-# 3. Push the schema + Row-Level Security policies
-pnpm db:migrate          # or: pnpm db:push
+# 3. 建立資料表與 RLS policy
+pnpm db:migrate
 
-# 4. Run
-pnpm dev                 # http://localhost:3000
+# 4. 啟動開發伺服器
+pnpm dev
 ```
 
-**Supabase setup (one time):** enable the **Email** auth provider, and add `http://localhost:3000/auth/confirm` to **Authentication → URL Configuration → Redirect URLs**. Magic-link *and* email/password login are both supported out of the box.
+啟動後打開：
 
-## 🧱 Tech stack
+```text
+http://localhost:3000
+```
 
-| Layer | Choice |
-|-------|--------|
-| Framework | **Next.js 16** (App Router, RSC) + TypeScript |
-| UI | **Tailwind CSS v4** + **shadcn/ui** |
-| AI | **Vercel AI SDK v6** + `@ai-sdk/google` → **Gemini 2.5 Flash** (streaming) |
-| Auth | **Supabase Auth** (`@supabase/ssr`) — magic link + password |
-| Database | **Supabase Postgres** with **Row-Level Security** |
-| ORM | **Drizzle ORM** + drizzle-kit migrations |
-| Testing | **Vitest** (unit + snapshot) |
-
-Designed so the AI provider is **one line to swap** — move to Vertex AI or the Vercel AI Gateway without touching your app code.
-
-## 🔒 Security by design
-
-- **Row-Level Security on every table** — users can only ever touch their own canvases, enforced in Postgres itself.
-- **Defense in depth** — server queries re-check ownership by `user_id`, not just RLS.
-- Secrets stay server-side; the browser only ever sees the publishable key.
-
-## 🧪 Testing
+`.env.local` 需要填入：
 
 ```bash
-pnpm test        # Vitest: framework integrity, stage prompts (snapshots), AI wrappers, helpers
-pnpm lint        # ESLint
-npx tsc --noEmit # Type-check
+GOOGLE_GENERATIVE_AI_API_KEY=
+NEXT_PUBLIC_SUPABASE_URL=
+NEXT_PUBLIC_SUPABASE_ANON_KEY=
+SUPABASE_SERVICE_ROLE_KEY=
+DATABASE_URL=
 ```
 
-The methodology engine (10-block knowledge, stage prompt assembly, status transitions, markdown export) is **100% unit-tested and decoupled from the UI**.
+Supabase 一次性設定：
 
-## 🛣️ Roadmap
+- 啟用 Email Auth provider。
+- 在 Authentication -> URL Configuration -> Redirect URLs 加入 `http://localhost:3000/auth/confirm`。
+- `DATABASE_URL` 建議使用 Supabase shared pooler 連線字串。
 
-Built and working today: ✅ 3-stage AI chat · ✅ conversation-to-content synthesis · ✅ one-click draft-all · ✅ 10-block canvas with status lights · ✅ auth + persistence + RLS · ✅ Markdown export.
+## 技術架構
 
-Next up:
+| 層級 | 技術 |
+|------|------|
+| Framework | Next.js 16 App Router + React 19 + TypeScript |
+| UI | Tailwind CSS v4 + shadcn/ui |
+| AI | Vercel AI SDK v6 + `@ai-sdk/google` + Gemini 2.5 Flash |
+| Auth | Supabase Auth，支援 magic link 與 email/password |
+| Database | Supabase Postgres + Row-Level Security |
+| ORM | Drizzle ORM + drizzle-kit migrations |
+| Testing | Vitest unit tests + prompt snapshots |
 
-- [ ] ✏️ Edit the one-liner from the canvas page
-- [ ] 🚀 One-click Vercel deploy + `vercel.json`
-- [ ] 🎭 Playwright end-to-end tests
-- [ ] 🔗 Read-only share links for your canvas
-- [ ] 📄 Polished PDF export
-- [ ] 📊 Completeness dashboard & per-block scoring
-- [ ] 🌍 i18n (English UI; the coach currently speaks Traditional Chinese)
-- [ ] 🤝 Real-time multiplayer canvases
-- [ ] ✉️ Custom SMTP recipe (Resend) for reliable magic-link delivery
+AI provider 透過 Vercel AI SDK 抽象，未來要改 Vertex AI、Vercel AI Gateway 或其他模型時，主要會集中在 model provider 設定，不需要重寫整個應用。
 
-> Want one of these? [Open an issue](https://github.com/kevin801221/canvas-coach/issues) or send a PR — see [Contributing](#-contributing).
+## 專案結構
 
-## 🏗️ Architecture
-
-```
+```text
 app/
-  (auth)/login         # magic link + password
-  dashboard            # your canvases (create / rename / delete)
-  canvas/[id]          # 10-block overview + block panel
+  (auth)/login                 # 登入頁：magic link + email/password
+  dashboard                    # 畫布列表、建立、重新命名、刪除
+  canvas/[id]                  # 10 格總覽與格子面板
   api/
-    chat               # 3-stage streaming (Gemini)
-    canvas/[id]/draft-all   # one-click draft all blocks
-    canvas/[id]/synthesize  # conversation → polished block content
-    canvas/[id]/adopt       # save block + advance status
-    export/[id]             # canvas → Markdown
+    chat                       # 三階段 AI 串流對話
+    canvas/[id]/draft-all      # 一鍵起草全部格子
+    canvas/[id]/synthesize     # 用對話整理成正式內容
+    canvas/[id]/adopt          # 採納內容並更新狀態
+    export/[id]                # 匯出 Markdown
 lib/
-  canvas-framework.ts  # the soul: 10 blocks of coaching knowledge
-  ai/                  # stage prompts, streaming, synthesis, drafting
-  db/                  # Drizzle schema (+RLS), queries
-  supabase/            # ssr clients + auth middleware
+  canvas-framework.ts          # 10 格方法論知識
+  ai/                          # prompts、draft、chat、synthesis
+  db/                          # Drizzle schema、queries、RLS migration
+  supabase/                    # server/client/middleware clients
+  export/markdown.ts           # 畫布轉 Markdown
+components/
+  canvas-board.tsx
+  canvas-grid.tsx
+  block-panel.tsx
+  block-chat.tsx
+  block-card.tsx
 ```
 
-Full design doc: [`docs/superpowers/specs/2026-06-13-canvas-coach-design.md`](docs/superpowers/specs/2026-06-13-canvas-coach-design.md).
+完整產品設計文件見：[docs/superpowers/specs/2026-06-13-canvas-coach-design.md](docs/superpowers/specs/2026-06-13-canvas-coach-design.md)。
 
-## 🤝 Contributing
-
-PRs and issues welcome. The methodology layer is pure and well-tested, so it's a friendly codebase to extend.
-
-1. Fork & branch
-2. `pnpm install && pnpm test`
-3. Keep `pnpm lint` and `npx tsc --noEmit` green
-4. Open a PR
-
-## 📜 License
-
-MIT — do whatever, just don't blame us when the devil's advocate hurts your feelings.
-
----
-
-<div align="center">
-
-### ⭐ If this helped you kill a bad idea early (or sharpen a good one), star the repo.
-
-That's the whole business model.
-
-</div>
-
----
-
-## 🇹🇼 繁體中文
-
-> **一句話**：大多數創業者覺得自己的點子很棒，只是因為從來沒人戳破它。Canvas Coach 就是那個戳破你的人。
-
-用 **MIT 紀律創業畫布（Disciplined Entrepreneurship）** 的 10 格框架，搭配 AI 三段式陪跑：
-
-- 📝 **起草** — 把你的一句話總述變成具體、可被驗證的初稿
-- 🎓 **教練** — 蘇格拉底式追問，一次問 1–2 個，逼你想得更深，但不替你回答
-- 😈 **魔鬼代言人** — 用挑剔投資人的角度攻擊你的假設、要數字、戳盲點
-
-關鍵差異：**每一格都內建該格的方法論知識**（定義、好壞範例、追問題庫、攻擊角度、所需證據），所以 AI 不是亂講，是在跑方法論。討論完按「**用對話整理**」，模型會讀完整段對話，產出**修正後的答案**（不是複製對話），你確認後存檔，格子狀態燈 ○→◐→●→★ 隨之成熟。還有「**一鍵起草**」：一句話總述，10 格初稿一次生成。
-
-**快速開始**
+## 測試
 
 ```bash
-pnpm install
-cp .env.local.example .env.local   # 填入 Gemini / Supabase 金鑰
-pnpm db:migrate                    # 建表 + RLS
-pnpm dev                           # http://localhost:3000
+pnpm test
+pnpm lint
+npx tsc --noEmit
 ```
 
-設定細節（環境變數、Supabase Auth）見 [Quickstart](#-quickstart) 與設計文件。覺得有用的話，**幫專案點顆 ⭐**。
+目前測試覆蓋重點：
+
+- 10 格方法論資料完整性。
+- AI prompt 組裝與 snapshot。
+- 起草、對話整理與 markdown 匯出邏輯。
+- 資料庫 schema、block 狀態與 query helper。
+
+## Roadmap
+
+已完成：
+
+- [x] 10 格創業畫布
+- [x] 起草、教練、魔鬼代言人三階段 AI 對話
+- [x] 一鍵起草全部格子
+- [x] 用完整對話整理成正式內容
+- [x] Supabase Auth + Postgres RLS
+- [x] Markdown 匯出
+- [x] Vitest 單元測試與 prompt snapshot
+
+接下來可做：
+
+- [ ] Read-only 分享連結
+- [ ] PDF 匯出
+- [ ] 完成度評分與每格風險分數
+- [ ] Playwright E2E 測試
+- [ ] Vercel 一鍵部署設定
+- [ ] 多人協作與版本歷史
+- [ ] 完整 i18n：繁中、英文、日文
+
+## Repo 上架文案
+
+建議 GitHub repo 名稱：
+
+```text
+startup-reality-check
+```
+
+建議 GitHub description：
+
+```text
+AI 創業現實檢查器：用 MIT 紀律創業 10 格畫布，把一句點子變成可驗證、可被挑戰、可匯出的商業模型。
+```
+
+建議 topics：
+
+```text
+startup, business-model, ai-coach, nextjs, supabase, gemini, drizzle, disciplined-entrepreneurship, traditional-chinese
+```
+
+社群貼文短句：
+
+```text
+我做了一個不會只說好聽話的 AI 創業教練：輸入一句點子，它會幫你起草 10 格商業模型，再用教練和挑剔投資人的角度逼你補上證據。
+```
+
+## English Summary
+
+**Startup Reality Check** is an AI business-model coach built around the MIT Disciplined Entrepreneurship canvas. It turns a one-line startup idea into a 10-block canvas, then helps founders draft, refine, challenge, and export their assumptions before spending real time and money on the wrong idea.
