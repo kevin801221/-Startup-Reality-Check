@@ -61,6 +61,30 @@ function BlockPanelBody({
   const [stage, setStage] = useState<Stage>('draft')
   const [content, setContent] = useState(selected.content ?? '')
   const [saving, setSaving] = useState(false)
+  const [synthesizing, setSynthesizing] = useState(false)
+
+  async function synthesize() {
+    setSynthesizing(true)
+    try {
+      const res = await fetch(`/api/canvas/${canvasId}/synthesize`, {
+        method: 'POST',
+        headers: { 'content-type': 'application/json' },
+        body: JSON.stringify({ blockNo: selected.blockNo, content }),
+      })
+      if (!res.ok) {
+        const { error } = (await res.json().catch(() => ({}))) as { error?: string }
+        toast.error(error || '整理失敗，請稍後再試')
+        return
+      }
+      const { content: next } = (await res.json()) as { content: string }
+      setContent(next)
+      toast.success('已用對話整理出正式內容，請確認後儲存')
+    } catch {
+      toast.error('整理失敗，請稍後再試')
+    } finally {
+      setSynthesizing(false)
+    }
+  }
 
   async function save() {
     const trimmed = content.trim()
@@ -96,17 +120,27 @@ function BlockPanelBody({
       </DialogHeader>
 
       <div className="flex flex-col gap-2">
-        <div className="flex items-center justify-between">
+        <div className="flex items-center justify-between gap-2">
           <span className="text-sm font-medium">正式內容</span>
-          <Button size="sm" onClick={save} disabled={saving}>
-            {saving ? '儲存中…' : '儲存為正式內容'}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              size="sm"
+              variant="outline"
+              onClick={synthesize}
+              disabled={synthesizing || saving}
+            >
+              {synthesizing ? '整理中…' : '用對話整理'}
+            </Button>
+            <Button size="sm" onClick={save} disabled={saving || synthesizing}>
+              {saving ? '儲存中…' : '儲存為正式內容'}
+            </Button>
+          </div>
         </div>
         <Textarea
           value={content}
           onChange={(e) => setContent(e.target.value)}
           className="min-h-24"
-          placeholder="可手動編輯，或從下方對話「採納此則」帶入。"
+          placeholder="可手動編輯，或先在下方對話討論後按「用對話整理」自動產出。"
         />
       </div>
 
@@ -118,12 +152,7 @@ function BlockPanelBody({
         </TabsList>
       </Tabs>
 
-      <BlockChat
-        canvasId={canvasId}
-        blockNo={selected.blockNo}
-        stage={stage}
-        onAdoptText={(t) => setContent(t)}
-      />
+      <BlockChat canvasId={canvasId} blockNo={selected.blockNo} stage={stage} />
     </>
   )
 }

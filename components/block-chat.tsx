@@ -4,7 +4,6 @@ import { useEffect, useState } from 'react'
 import { useChat } from '@ai-sdk/react'
 import { DefaultChatTransport, type UIMessage } from 'ai'
 import type { Stage } from '@/lib/canvas-framework'
-import { AdoptButton } from '@/components/adopt-button'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 
@@ -24,12 +23,10 @@ export function BlockChat({
   canvasId,
   blockNo,
   stage,
-  onAdoptText,
 }: {
   canvasId: string
   blockNo: number
   stage: Stage
-  onAdoptText: (text: string) => void
 }) {
   const [input, setInput] = useState('')
   const { messages, sendMessage, status, setMessages } = useChat({
@@ -81,11 +78,6 @@ export function BlockChat({
                 >
                   {text}
                 </div>
-                {isAssistant && text.trim() && (
-                  <div className="mt-1">
-                    <AdoptButton onClick={() => onAdoptText(text.trim())} />
-                  </div>
-                )}
               </div>
             )
           })

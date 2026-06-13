@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'vitest'
-import { buildSystemPrompt } from '@/lib/ai/prompts'
+import { buildSynthesisPrompt, buildSystemPrompt } from '@/lib/ai/prompts'
 
 describe('buildSystemPrompt', () => {
   test('共用區塊帶入該格的 title、question、definition、好壞範例', () => {
@@ -35,5 +35,23 @@ describe('buildSystemPrompt', () => {
     expect(buildSystemPrompt(2, 'draft')).toMatchSnapshot()
     expect(buildSystemPrompt(2, 'coach')).toMatchSnapshot()
     expect(buildSystemPrompt(2, 'devil')).toMatchSnapshot()
+  })
+})
+
+describe('buildSynthesisPrompt', () => {
+  test('帶入該格知識並要求「只輸出正式內容、不要問問題」', () => {
+    const p = buildSynthesisPrompt(2)
+    expect(p).toContain('你的客戶是誰')
+    expect(p).toContain('整理正式內容')
+    expect(p).toContain('不要問問題')
+    expect(p).toContain('只輸出這一格的正式內容文字本身')
+  })
+
+  test('無效格號丟錯', () => {
+    expect(() => buildSynthesisPrompt(0)).toThrow()
+  })
+
+  test('輸出穩定（snapshot）', () => {
+    expect(buildSynthesisPrompt(2)).toMatchSnapshot()
   })
 })
