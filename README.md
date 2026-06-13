@@ -6,25 +6,21 @@
 
 把一句模糊的商業點子，拆成 **MIT 紀律創業畫布** 的 10 個關鍵假設；再用 AI 起草、追問、挑戰，逼它變成一份可驗證、可討論、可匯出的商業模型。
 
+**語言**：繁體中文 · [English](README.en.md)
+
 [![Next.js](https://img.shields.io/badge/Next.js-16-black?logo=next.js)](https://nextjs.org/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Gemini](https://img.shields.io/badge/Google-Gemini%202.5-8E75FF?logo=google&logoColor=white)](https://ai.google.dev/)
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 [![Tests](https://img.shields.io/badge/tests-Vitest-success)](#測試)
 
-[快速開始](#快速開始) · [為什麼做](#為什麼做) · [怎麼運作](#怎麼運作) · [10 格創業畫布](#10-格創業畫布) · [Repo 上架文案](#repo-上架文案)
+[快速開始](#快速開始) · [為什麼做](#為什麼做) · [怎麼運作](#怎麼運作) · [10 格創業畫布](#10-格創業畫布) · [Roadmap](#roadmap)
 
 </div>
 
 ---
 
 > **一句話**：大多數創業者不是沒有想法，而是太少被追問。創業真心話會像共同創辦人一樣陪你起草，像教練一樣逼你講清楚，最後像挑剔投資人一樣攻擊你的假設，讓商業模型在真正花錢前先經過壓力測試。
-
-<!--
-建議上傳 repo 前放一張 GIF 或截圖：
-- 10 秒 demo：輸入一句商業點子 → 一鍵生成 10 格草稿 → 切到「魔鬼代言人」被挑戰。
-![創業真心話 demo](docs/demo.gif)
--->
 
 ## 為什麼做
 
@@ -88,7 +84,7 @@
 
 ```bash
 # 1. Clone & install
-git clone https://github.com/<your-account>/startup-reality-check.git
+git clone https://github.com/kevin801221/-Startup-Reality-Check.git startup-reality-check
 cd startup-reality-check
 pnpm install
 
@@ -203,33 +199,3 @@ npx tsc --noEmit
 - [ ] Vercel 一鍵部署設定
 - [ ] 多人協作與版本歷史
 - [ ] 完整 i18n：繁中、英文、日文
-
-## Repo 上架文案
-
-建議 GitHub repo 名稱：
-
-```text
-startup-reality-check
-```
-
-建議 GitHub description：
-
-```text
-AI 創業現實檢查器：用 MIT 紀律創業 10 格畫布，把一句點子變成可驗證、可被挑戰、可匯出的商業模型。
-```
-
-建議 topics：
-
-```text
-startup, business-model, ai-coach, nextjs, supabase, gemini, drizzle, disciplined-entrepreneurship, traditional-chinese
-```
-
-社群貼文短句：
-
-```text
-我做了一個不會只說好聽話的 AI 創業教練：輸入一句點子，它會幫你起草 10 格商業模型，再用教練和挑剔投資人的角度逼你補上證據。
-```
-
-## English Summary
-
-**Startup Reality Check** is an AI business-model coach built around the MIT Disciplined Entrepreneurship canvas. It turns a one-line startup idea into a 10-block canvas, then helps founders draft, refine, challenge, and export their assumptions before spending real time and money on the wrong idea.
