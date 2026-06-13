@@ -52,7 +52,7 @@
 |----|------|------|
 | 框架 | Next.js（App Router）+ TypeScript | Vercel 原生 |
 | 樣式/元件 | Tailwind CSS + shadcn/ui | 快速做出乾淨可互動 UI |
-| AI | Vercel AI SDK v6 + AI Gateway | 用 `"anthropic/claude-sonnet-4-6"` 串流；魔鬼代言人深度挑戰可升 `"anthropic/claude-opus-4-8"` |
+| AI | Vercel AI SDK v6 + `@ai-sdk/google`（Gemini API） | 三段式皆用 `google("gemini-2.5-flash")` 串流；日後要加深魔鬼代言人推理可單獨升 `gemini-2.5-pro` |
 | 認證 | Supabase Auth（`@supabase/ssr`） | Email magic link |
 | 資料庫 | Supabase Postgres + RLS | 每人只看得到自己的畫布 |
 | ORM | Drizzle ORM | type-safe，serverless 友善 |
@@ -60,7 +60,7 @@
 | 測試 | Vitest + Playwright | 單元 / 整合 / E2E |
 | 套件管理 | pnpm | 純 TS 專案，無 Python，故不使用 uv |
 
-> 模型選擇預設用 AI Gateway 的 `provider/model` 字串，不直接綁 `@ai-sdk/anthropic`，方便日後切換與觀測。
+> AI 走 Google AI Studio 的 Gemini API（`@ai-sdk/google` provider）。保留 Vercel AI SDK 抽象層，日後要改走 Vercel AI Gateway（`google/gemini-2.5-flash` 字串）或 Vertex AI，只需動 model 那一行。
 
 ## 6. 資料模型
 
@@ -241,7 +241,7 @@ components/
 ## 11. 錯誤處理與邊界
 
 - AI 串流失敗：前端顯示重試；保留使用者已輸入訊息不遺失。
-- 速率/額度：AI Gateway 429 → 友善提示稍後再試。
+- 速率/額度：Gemini API 429（免費額度有上限）→ 友善提示稍後再試。
 - 未登入存取畫布：middleware 導向 /login。
 - 跨使用者存取：RLS 擋下；API 層再驗 `user_id` 一次（深度防禦）。
 - 空 `one_liner` 就按整份起草：擋下並提示先填一句事業總述。
@@ -257,8 +257,8 @@ components/
 ## 13. 環境變數與部署
 
 ```
-# AI（Vercel AI Gateway）
-AI_GATEWAY_API_KEY=...            # 或在 Vercel 上用 OIDC 自動注入
+# AI（Google AI Studio — Gemini API）
+GOOGLE_GENERATIVE_AI_API_KEY=...  # @ai-sdk/google 預設讀此變數；於 aistudio.google.com 取得
 
 # Supabase
 NEXT_PUBLIC_SUPABASE_URL=...

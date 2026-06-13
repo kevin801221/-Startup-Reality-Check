@@ -7,7 +7,7 @@
 
 - Next.js（App Router）+ TypeScript
 - Tailwind CSS + shadcn/ui
-- Vercel AI SDK v6 + AI Gateway（Claude）
+- Vercel AI SDK v6 + `@ai-sdk/google`（Gemini 2.5 Flash）
 - Supabase（Postgres + Auth + RLS）
 - Drizzle ORM
 - 部署：Vercel
