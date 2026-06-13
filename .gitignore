@@ -3,6 +3,9 @@
 # dependencies
 /node_modules
 /.pnpm-store
+# pnpm 11 會自動產生此檔（含 allowBuilds 佔位字串），舊版 pnpm 會因缺 packages 欄位報錯；
+# 本專案非 monorepo，建置核可改放 package.json 的 pnpm.onlyBuiltDependencies，故忽略此檔。
+pnpm-workspace.yaml
 /.pnp
 .pnp.*
 .yarn/*
