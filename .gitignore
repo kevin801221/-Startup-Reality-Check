@@ -42,8 +42,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# drizzle
-/drizzle
+# drizzle (migrations are version-controlled; ignore only local kit cache)
+/drizzle/.cache
 
 # testing
 /coverage
