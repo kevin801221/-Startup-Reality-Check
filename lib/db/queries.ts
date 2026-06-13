@@ -104,6 +104,28 @@ export async function adoptBlockContent(input: {
   })
 }
 
+/**
+ * 一鍵起草：把多格初稿一次寫入（status=draft），同一交易內完成。
+ */
+export async function applyDrafts(
+  canvasId: string,
+  drafts: { blockNo: number; content: string }[],
+) {
+  const db = getDb()
+  return db.transaction(async (tx) => {
+    for (const d of drafts) {
+      await tx
+        .update(blocks)
+        .set({ content: d.content, status: 'draft', updatedAt: new Date() })
+        .where(and(eq(blocks.canvasId, canvasId), eq(blocks.blockNo, d.blockNo)))
+    }
+    await tx
+      .update(canvases)
+      .set({ updatedAt: new Date() })
+      .where(eq(canvases.id, canvasId))
+  })
+}
+
 /** 載入某格的對話歷史（時間升冪）。 */
 export async function listMessages(canvasId: string, blockNo: number) {
   const db = getDb()

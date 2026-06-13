@@ -21,5 +21,12 @@ export default async function CanvasPage({ params }: { params: Promise<{ id: str
     status: b.status as BlockStatus,
   }))
 
-  return <CanvasWorkspace canvasId={id} title={data.canvas.title} initialBlocks={blocks} />
+  return (
+    <CanvasWorkspace
+      canvasId={id}
+      title={data.canvas.title}
+      hasOneLiner={Boolean(data.canvas.oneLiner?.trim())}
+      initialBlocks={blocks}
+    />
+  )
 }
