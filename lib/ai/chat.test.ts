@@ -5,7 +5,10 @@ import { streamChat } from '@/lib/ai/chat'
 
 function mockModel(capture: { prompt?: unknown }) {
   return new MockLanguageModelV3({
-    doStream: async (options) => {
+    // 回傳型別標成 any，避開 V3 stream part 在 PromiseLike 反變位置的嚴格比對；
+    // 核心斷言（capture.prompt 含 system 文字、可消費串流）不受影響。
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    doStream: async (options): Promise<any> => {
       capture.prompt = options.prompt
       return {
         stream: simulateReadableStream({
@@ -16,8 +19,11 @@ function mockModel(capture: { prompt?: unknown }) {
             { type: 'text-end', id: '0' },
             {
               type: 'finish',
-              finishReason: 'stop',
-              usage: { inputTokens: 5, outputTokens: 5, totalTokens: 10 },
+              finishReason: 'stop' as const,
+              usage: {
+                inputTokens: { total: 5, noCache: 5, cacheRead: 0, cacheWrite: 0 },
+                outputTokens: { total: 5, text: 5, reasoning: 0 },
+              },
             },
           ],
         }),
