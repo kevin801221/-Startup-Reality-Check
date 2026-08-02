@@ -1,0 +1,40 @@
+# Dependencies
+node_modules
+pnpm-lock.yaml
+
+# Next.js
+.next
+out
+
+# Environment
+.env
+.env.local
+.env.production
+.env*.local
+
+# Testing
+coverage
+.nyc_output
+
+# Git
+.git
+.gitignore
+
+# Documentation
+*.md
+docs
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Misc
+.turbo
+.vercel

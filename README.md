@@ -14,7 +14,7 @@
 [![Supabase](https://img.shields.io/badge/Supabase-Postgres%20%2B%20RLS-3FCF8E?logo=supabase&logoColor=white)](https://supabase.com/)
 [![Tests](https://img.shields.io/badge/tests-Vitest-success)](#測試)
 
-[快速開始](#快速開始) · [為什麼做](#為什麼做) · [怎麼運作](#怎麼運作) · [10 格創業畫布](#10-格創業畫布) · [Roadmap](#roadmap)
+[快速開始](#快速開始) · [為什麼做](#為什麼做) · [怎麼運作](#怎麼運作) · [10 格創業畫布](#10-格創業畫布) · [部署](#部署) · [Roadmap](#roadmap)
 
 </div>
 
@@ -163,6 +163,26 @@ components/
 
 完整產品設計文件見：[docs/superpowers/specs/2026-06-13-canvas-coach-design.md](docs/superpowers/specs/2026-06-13-canvas-coach-design.md)。
 
+## 部署
+
+### Vercel 一鍵部署（推薦）
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/kevin801221/-Startup-Reality-Check)
+
+### Docker 自託管
+
+```bash
+# 使用 Docker Compose
+docker-compose up -d
+
+# 或使用 Docker 單獨建置
+docker build -t startup-reality-check .
+docker run -p 3000:3000 --env-file .env startup-reality-check
+```
+
+詳細部署指南請見：[DEPLOYMENT.md](DEPLOYMENT.md)  
+效能優化建議請見：[OPTIMIZATION.md](OPTIMIZATION.md)
+
 ## 測試
 
 ```bash
@@ -189,6 +209,10 @@ npx tsc --noEmit
 - [x] Supabase Auth + Postgres RLS
 - [x] Markdown 匯出
 - [x] Vitest 單元測試與 prompt snapshot
+- [x] GitHub Actions CI/CD
+- [x] 生產環境優化（bundle splitting、圖片優化、安全 headers）
+- [x] Docker 支援與自託管部署
+- [x] API 錯誤處理、rate limiting、日誌系統
 
 接下來可做：
 
@@ -199,3 +223,5 @@ npx tsc --noEmit
 - [ ] Vercel 一鍵部署設定
 - [ ] 多人協作與版本歷史
 - [ ] 完整 i18n：繁中、英文、日文
+- [ ] Redis 快取層
+- [ ] Sentry 錯誤追蹤整合
