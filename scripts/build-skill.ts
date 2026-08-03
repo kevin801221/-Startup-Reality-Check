@@ -8,7 +8,7 @@ import { dirname, join, relative, resolve } from 'node:path'
 
 import { buildSkillPack } from '@/lib/skill/build'
 
-export const SKILL_PACK_DIR = 'skills/startup-reality-check'
+export const SKILL_PACK_DIR = 'plugin/skills/startup-reality-check'
 
 async function main() {
   const root = resolve(import.meta.dirname, '..')

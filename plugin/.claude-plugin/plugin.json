@@ -1,0 +1,25 @@
+{
+  "name": "idea-to-ship",
+  "description": "從訪談或會議紀錄一路自動化到上線：收斂需求、開 spec、接 Figma / Pencil MCP 設計介面、規劃前後端、切片實作、部署。內建 grill-me 式追問與 MIT 紀律創業畫布的商業壓力測試。",
+  "version": "0.1.0",
+  "author": {
+    "name": "kevin801221",
+    "url": "https://github.com/kevin801221"
+  },
+  "homepage": "https://github.com/kevin801221/-Startup-Reality-Check",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kevin801221/-Startup-Reality-Check.git"
+  },
+  "license": "MIT",
+  "keywords": [
+    "requirements",
+    "spec",
+    "discovery",
+    "design",
+    "figma",
+    "pencil",
+    "deploy",
+    "grill"
+  ]
+}

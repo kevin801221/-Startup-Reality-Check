@@ -10,7 +10,7 @@ import {
   renderSkillMd,
 } from '@/lib/skill/build'
 
-const PACK_DIR = join(process.cwd(), 'skills/startup-reality-check')
+const PACK_DIR = join(process.cwd(), 'plugin/skills/startup-reality-check')
 
 describe('renderSkillMd', () => {
   const md = renderSkillMd()
