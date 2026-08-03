@@ -1,0 +1,15 @@
+{
+  "name": "kevin-idea-to-ship",
+  "owner": {
+    "name": "kevin801221",
+    "url": "https://github.com/kevin801221"
+  },
+  "plugins": [
+    {
+      "name": "idea-to-ship",
+      "source": "./plugin",
+      "description": "從訪談或會議紀錄一路自動化到上線：收斂需求、開 spec、接 Figma / Pencil MCP 設計介面、規劃前後端、切片實作、部署。",
+      "version": "0.1.0"
+    }
+  ]
+}

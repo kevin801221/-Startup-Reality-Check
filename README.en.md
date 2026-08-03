@@ -120,6 +120,32 @@ One-time Supabase setup:
 - Add `http://localhost:3000/auth/confirm` to Authentication -> URL Configuration -> Redirect URLs.
 - Use the Supabase shared pooler connection string for `DATABASE_URL`.
 
+## Prefer No Server? Give The Whole Pipeline To Your Coding Agent
+
+`plugin/` is an agent plugin (Cursor, Claude Code, Codex) that turns **one interview or meeting** into **shipped work**:
+
+```text
+transcript / meeting notes
+  -> cited facts and open questions
+  -> grill-style interview, one question at a time, until it converges
+  -> spec with a screen inventory and acceptance criteria
+  -> UI designed through Figma / Pencil MCP
+  -> backend + frontend plan sliced vertically
+  -> slice-by-slice implementation, tests on every slice
+  -> preflight and deploy
+```
+
+Install (symlinks by default, so every project picks up updates from this repo):
+
+```bash
+scripts/install-skills.sh                # -> ~/.agents/skills (Cursor / Codex)
+scripts/install-skills.sh claude         # -> ~/.claude/skills (Claude Code)
+```
+
+Then type `/idea-to-ship` in any project — or run a single stage with `/startup-reality-check`, `/spec-writer`, `/design-ui`, and so on. Progress lives in that project's `docs/pipeline/<slug>.md`, so switching agents or closing the window never loses the thread. `lib/canvas-framework.ts` remains the single source of truth for the 10 blocks; `pnpm skill:build` compiles it into the skill.
+
+Full walkthrough of the eight stages is in [plugin/README.md](plugin/README.md); the design rationale and the `grill-me` comparison are in [docs/superpowers/specs/2026-08-03-reality-check-engine.md](docs/superpowers/specs/2026-08-03-reality-check-engine.md).
+
 ## Tech Stack
 
 | Layer | Technology |
