@@ -120,6 +120,22 @@ One-time Supabase setup:
 - Add `http://localhost:3000/auth/confirm` to Authentication -> URL Configuration -> Redirect URLs.
 - Use the Supabase shared pooler connection string for `DATABASE_URL`.
 
+## Prefer No Server? Use It As An Agent Skill
+
+The 10-block methodology compiles into a portable agent skill, so you can run the same three-stage pressure test on **day one of any new project** — no database, no account:
+
+```bash
+pnpm skill:build
+
+# Cursor and Claude Code both read ~/.agents/skills, so this covers every project
+mkdir -p ~/.agents/skills
+ln -s "$(pwd)/skills/startup-reality-check" ~/.agents/skills/startup-reality-check
+```
+
+Then type `/startup-reality-check` in any project. The agent interviews you with the block-specific question bank and attack angles, and writes the result to that project's `reality-check.md`. `lib/canvas-framework.ts` stays the single source of truth, so editing it updates both the app and the skill. See [skills/README.md](skills/README.md).
+
+To extend the engine beyond startup canvases (tech design review, PRD, pre-launch checks), read the proposal in [docs/superpowers/specs/2026-08-03-reality-check-engine.md](docs/superpowers/specs/2026-08-03-reality-check-engine.md) — it also compares this project with `grill-me`.
+
 ## Tech Stack
 
 | Layer | Technology |

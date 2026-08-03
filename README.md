@@ -120,6 +120,22 @@ Supabase 一次性設定：
 - 在 Authentication -> URL Configuration -> Redirect URLs 加入 `http://localhost:3000/auth/confirm`。
 - `DATABASE_URL` 建議使用 Supabase shared pooler 連線字串。
 
+## 不想架站？當成 agent skill 用
+
+10 格方法論可以編譯成一份可攜的 agent skill，讓你在**任何一個新專案的第一天**（還沒有資料庫、還沒有帳號）就跑同一套三階段壓力測試：
+
+```bash
+pnpm skill:build
+
+# Cursor 與 Claude Code 都會讀 ~/.agents/skills，放這裡就所有專案通用
+mkdir -p ~/.agents/skills
+ln -s "$(pwd)/skills/startup-reality-check" ~/.agents/skills/startup-reality-check
+```
+
+之後在任何專案裡輸入 `/startup-reality-check`，agent 會帶著 10 格的追問題庫與攻擊角度訪談你，把結論寫成該專案的 `reality-check.md`。知識的單一事實來源仍是 `lib/canvas-framework.ts`，改一次 app 與 skill 同步更新。詳見 [skills/README.md](skills/README.md)。
+
+想把這套引擎擴到創業以外的框架（技術設計 review、PRD、上線前檢查），設計提案見 [docs/superpowers/specs/2026-08-03-reality-check-engine.md](docs/superpowers/specs/2026-08-03-reality-check-engine.md)，裡面也有與 `grill-me` 的比較。
+
 ## 技術架構
 
 | 層級 | 技術 |
