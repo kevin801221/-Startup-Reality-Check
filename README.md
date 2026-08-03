@@ -120,21 +120,31 @@ Supabase 一次性設定：
 - 在 Authentication -> URL Configuration -> Redirect URLs 加入 `http://localhost:3000/auth/confirm`。
 - `DATABASE_URL` 建議使用 Supabase shared pooler 連線字串。
 
-## 不想架站？當成 agent skill 用
+## 不想架站？整條流程都能給 coding agent 用
 
-10 格方法論可以編譯成一份可攜的 agent skill，讓你在**任何一個新專案的第一天**（還沒有資料庫、還沒有帳號）就跑同一套三階段壓力測試：
+`plugin/` 是一個 agent plugin（Cursor / Claude Code / Codex 通吃），把**一場訪談或一次會議**變成**上線的功能**：
 
-```bash
-pnpm skill:build
-
-# Cursor 與 Claude Code 都會讀 ~/.agents/skills，放這裡就所有專案通用
-mkdir -p ~/.agents/skills
-ln -s "$(pwd)/skills/startup-reality-check" ~/.agents/skills/startup-reality-check
+```text
+訪談逐字稿 / 會議紀錄
+  -> 整理成有引用來源的事實與未決清單
+  -> grill 式追問，一次一題問到收斂
+  -> 開規格（含畫面清單與驗收條件）
+  -> 接 Figma / Pencil MCP 設計介面
+  -> 規劃前後端與垂直切片
+  -> 一片一片實作，每片跑測試
+  -> preflight 與部署
 ```
 
-之後在任何專案裡輸入 `/startup-reality-check`，agent 會帶著 10 格的追問題庫與攻擊角度訪談你，把結論寫成該專案的 `reality-check.md`。知識的單一事實來源仍是 `lib/canvas-framework.ts`，改一次 app 與 skill 同步更新。詳見 [skills/README.md](skills/README.md)。
+安裝（預設 symlink，這個 repo 更新後所有專案自動吃到新版）：
 
-想把這套引擎擴到創業以外的框架（技術設計 review、PRD、上線前檢查），設計提案見 [docs/superpowers/specs/2026-08-03-reality-check-engine.md](docs/superpowers/specs/2026-08-03-reality-check-engine.md)，裡面也有與 `grill-me` 的比較。
+```bash
+scripts/install-skills.sh                # → ~/.agents/skills（Cursor / Codex）
+scripts/install-skills.sh claude         # → ~/.claude/skills（Claude Code）
+```
+
+之後在任何專案輸入 `/idea-to-ship`（或單獨用 `/startup-reality-check`、`/spec-writer`、`/design-ui`…）。進度寫在該專案的 `docs/pipeline/<slug>.md`，換 agent、換工具、關掉視窗都接得回來。10 格方法論的單一事實來源仍是 `lib/canvas-framework.ts`，`pnpm skill:build` 會把它編譯進 skill。
+
+詳細用法與八個階段見 [plugin/README.md](plugin/README.md)；設計理路與跟 `grill-me` 的比較見 [docs/superpowers/specs/2026-08-03-reality-check-engine.md](docs/superpowers/specs/2026-08-03-reality-check-engine.md)。
 
 ## 技術架構
 

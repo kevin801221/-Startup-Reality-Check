@@ -1,7 +1,7 @@
 # 從一個 App 到「每個新專案第一天都能用」
 
 - 日期：2026-08-03
-- 狀態：Layer 1 已實作，Layer 2／3 為設計提案
+- 狀態：Layer 1 與 Layer 3 的 plugin 面已實作，Layer 2（框架註冊表）為設計提案
 - 作者：kevin
 
 ## 1. 問題
@@ -41,7 +41,21 @@ App 只是這兩樣東西的其中一個**輸出面**。要讓所有未來專案
 
 單一事實來源仍然是 `lib/canvas-framework.ts`：改一次，app 與 skill 同時更新。訪談成果寫進使用者專案的 `reality-check.md`，跟著那個 repo 進 git，所以「持久化」由檔案系統負責，不需要 Postgres。
 
-安裝與使用見 [`skills/README.md`](../../../skills/README.md)。
+安裝與使用見 [`plugin/README.md`](../../../plugin/README.md)。
+
+### Layer 1.5：把單一 skill 變成一條 pipeline（已實作）
+
+單獨一個「商業壓測」skill 解決的是「這件事值不值得做」，但使用者第一天真正要的是**從訪談到上線那一整串**。所以 `plugin/` 現在是一個完整的 agent plugin：`idea-to-ship` 當協調者，底下八個階段各自一個 skill（事實整理、商業壓測、追問收斂、寫規格、介面設計、前後端規劃、切片實作、上線）。
+
+三個關鍵設計：
+
+1. **狀態在檔案，不在對話。** `docs/pipeline/<slug>.md` 記模式、當前階段、阻塞問題、決定紀錄與交接筆記。任何 agent 讀完它就能接手，這是「所有 coding agent 都能用」的真正條件——不是格式相容，而是狀態可交接。
+2. **grill-me 的姿態 + 固定覆蓋清單。** `grill-to-converge` 用 grill-me 的訪談法（一次一題、附建議答案、能查就查），但收尾前必須掃過 `references/coverage.md` 的十個維度（權限、資料模型、狀態轉換、失敗處理、既有系統、錢與法遵、通知副作用、介面狀態、可觀測性、範圍與驗收），補掉「模型今天沒想到就不會問」的漏洞。
+3. **自動化到硬停點為止。** `mode: auto` 讓整條流程不逐階段確認，但在四種情況必須停：只有人能做的決定、花錢或不可逆的動作、缺憑證或環境、事實不足只能靠猜。能自動化的是流程，不是責任；為了「跑完」而編造答案會讓錯誤一路傳到 production。
+
+設計工具走 MCP：`design-ui` 依序偵測 Figma MCP、Pencil（`.pen`）MCP、專案既有設計系統，最後才退回「用既有元件寫可跑的 UI 骨架當設計稿」。各通道的踩雷點集中在 `design-ui/references/mcp-tools.md`，避免每次重新踩（Pencil 只能用 hex、不可直接寫 `.pen` JSON、桌面 app 要開、新檔要手動存；Figma 官方 skills 是強制前置）。
+
+`lib/skill/pack.test.ts` 驗證整包的可安裝性：每個 skill 的 frontmatter 完整、`name` 與資料夾同名、description 長度在限制內、內文引用的 `references/`／`templates/` 檔案存在、每個階段都與協調者雙向連結、兩份 plugin manifest 與 marketplace 的名稱版本一致。這些是 plugin 最容易安靜壞掉的地方。
 
 ### Layer 2：框架註冊表（framework-as-data）
 
@@ -78,6 +92,8 @@ export type FrameworkSpec = {
 
 這一層做完，「未來所有專案一開始都可以用」才算真的成立：新專案第一天要的往往不是灘頭堡市場，而是技術設計 review，而你已經有引擎了。
 
+註：Layer 1.5 的 pipeline 已經先用 markdown（`grill-to-converge/references/coverage.md`、`spec-writer/templates/spec.md`）把上面這幾份框架的內容落地了。Layer 2 的價值在於把它們變成**有型別、有測試、app 與 skill 共用**的資料，而不是各自維護一份 markdown——等第三份框架出現、開始出現複製貼上時再做，才不會過早抽象。
+
 ### Layer 3：分發面
 
 引擎與知識分離後，可以按需要多開輸出面，彼此共用 `lib/frameworks`：
@@ -86,7 +102,7 @@ export type FrameworkSpec = {
 - **MCP server**：把 `getFramework`／`buildSystemPrompt`／`synthesize` 開成 tool，讓任何支援 MCP 的 agent 拿到「框架知識」而不必複製一份 markdown。知識更新即時生效，是 skill pack 的升級路線。
 - **Web app（現況保留）**：需要多畫布比較、跨裝置、分享連結、版本歷史時才需要帳號與資料庫。它不該是入口，而是「這個點子我要認真做」之後才進來的那一層。
 
-建議順序：Layer 1（已完成）→ 加第二個框架驗證 Layer 2 的抽象是否成立 → 再決定要 CLI 還是 MCP。
+建議順序：Layer 1 與 1.5（已完成）→ 用 pipeline 實際跑完一個功能，看哪個階段的 markdown 開始出現重複 → 針對那部分做 Layer 2 → 再決定要 CLI 還是 MCP。
 
 ## 4. 不建議做的事：把這個 repo 當成 boilerplate
 
@@ -113,9 +129,11 @@ export type FrameworkSpec = {
 
 一句話：**grill-me 是通用的「問問題引擎」，創業真心話是特定領域的「該問哪些問題」**。前者的強項是零成本、任何情境都能用；後者的強項是不會漏、不會因為模型當天狀態不好就問淺了，而且結果留下的是文件不是聊天記錄。
 
-grill-me 有兩個設計值得抄，本次的 `SKILL.md` 已經納入：
+grill-me 有兩個設計直接被抄進 `startup-reality-check` 與 `grill-to-converge`：
 
 - **每題附上建議答案**，讓使用者只要回「對」就能前進，比開放式問句快得多。
 - **能從 codebase 查到的就自己查**，只把「只有使用者知道的決定」留給他。
 
-實務上的搭配：用創業真心話決定「這個事業值不值得做、先驗證什麼」，用 grill-me 決定「這個功能要怎麼實作」。
+而 `grill-to-converge` 補上 grill-me 沒有的那一半：**固定的覆蓋清單**（`references/coverage.md` 的十個維度）、**停止條件**（未決清單清空、每個決定有紀錄、使用者確認摘要），以及**產出落地成檔案**而不是聊天記錄。這三件事讓訪談品質不再取決於模型當天的直覺。
+
+實務上的搭配不再是「二選一」，而是同一條 pipeline 的不同階段：用 `startup-reality-check` 決定「這個事業值不值得做」，用 `grill-to-converge`（grill-me 的方法 + 覆蓋清單）決定「這個功能的每個細節怎麼定」，再往下走到規格、設計、實作、部署。
