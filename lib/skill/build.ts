@@ -102,6 +102,8 @@ ${statusLadder()}
 ## 結束
 
 當 10 格都到 ${STATUS_META.refined.symbol} 以上、且使用者確認沒有想迴避的問題時，停下來。把 \`reality-check.md\` 的最終版路徑告訴他，並明確說出「這份模型現在最可能錯的地方是哪一格」。
+
+要接著把它變成規格、介面與可上線的產品，回到 [idea-to-ship](../idea-to-ship/SKILL.md) 這條流程。
 `
 }
 
